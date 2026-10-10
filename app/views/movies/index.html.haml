@@ -4,6 +4,13 @@
 
 %h1 Movies
 
+%h2 Search TMDb for a movie
+
+= form_with url: search_tmdb_path, method: :get do |form|
+  = form.label :search_terms, "Search Terms"
+  = form.text_field :search_terms
+  = form.submit "Search TMDb"
+
 %table
   %thead
     %tr
