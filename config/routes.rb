@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "movies/search_tmdb", to: "movies#search_tmdb", as: :search_tmdb
   resources :movies
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
