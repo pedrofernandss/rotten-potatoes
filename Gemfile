@@ -71,3 +71,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "rspec-expectations", "~> 3.13", group: :test
+
+gem "themoviedb", "~> 1.0"
