@@ -38,3 +38,19 @@ end
 Then('I should see {string}') do |text|
   expect(page).to have_text(text)
 end
+
+Given('the following movies have been added:') do |table|
+  table.hashes.each do |movie|
+    Movie.create!(
+      title: movie['title'],
+      rating: movie['rating'],
+      release_date: Date.parse(movie['release_date'])
+    )
+  end
+end
+
+When('I sort the movie list by title') do
+  visit movies_path
+  click_link('Movie Title')
+end
+
