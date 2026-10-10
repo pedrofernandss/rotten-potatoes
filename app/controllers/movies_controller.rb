@@ -59,6 +59,26 @@ class MoviesController < ApplicationController
     end
   end
 
+  def search_tmdb
+    @search_term = params[:search_terms]
+
+    if @search_term.blank?
+      redirect_to movies_path, alert: "O termo de busca não pode ser vazio."
+      return
+    end
+
+    @movies_from_tmdb = TmdbMovie.find(@search_term)
+
+    movie_found = @movies_from_tmdb.any? do |movie|
+      movie.title.casecmp?(@search_term)
+    end
+
+    unless movie_found
+      redirect_to movies_path,
+                  notice: "'#{@search_term}' was not found in TMDb."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
